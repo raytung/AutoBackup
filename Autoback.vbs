@@ -1,4 +1,3 @@
-
 'Autoback.vbs [Version 2.0]
 'Written by Ray Tung RayT@hwl.com.hk . All rights reserved.
 'Last Updated 13/01/2014
@@ -25,14 +24,14 @@
 ' logg       = Desire log location
 
 ' ------------- PARAMETERS BELOW THIS LINE --------------------
- src        = "G:\ERP\Discoverer\JRE17045 upgrade\"
- tgt        = "C:\Users\rt23389\Desktop\backup space\"
- purge_dir  = "C:\Users\rt23389\Desktop\backup space\"
- prefix     = "Viewpoint_"
- drive      = "G:"
- svr        = "\\HILFILE02\gisdpvcsshare"
- purge_days = 7
- logg       = "C:\Users\rt23389\Desktop\backup space" & "\backup.log"
+ src        =                             ' e.g "G:\raytung\very important files"
+ tgt        =                             ' e.g "C:\Users\raytung\Desktop\backup"
+ purge_dir  =                             ' e.g "C:\Users\raytung\Desktop\backup"
+ prefix     =                             ' e.g "Cat_"
+ drive      =                             ' e.g "G:"    PLEASE have this set as the drive at src. Or it will fail
+ svr        =                             ' e.g "\\home\share"
+ purge_days =                             ' e.g 7
+ logg       =                             ' e.g "C:\Users\raytung\Desktop\backup" & "\backup.log"
  
  
  
