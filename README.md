@@ -10,8 +10,8 @@ Functions:
 
 Note:
 - Current date will be the backup file's name
-- A lot of the functions/implementation is mind boggling
-  but I wrote this for my work at HWL. Personalized use
+- A lot of the functions/implementation is mind boggling and confusing.
+  This is because I wrote this for my work at HWL, and specific implementations were required. Personalized use
   version may be released at a later date.
 
 Requirement:
