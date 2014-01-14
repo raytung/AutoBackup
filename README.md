@@ -10,6 +10,9 @@ Functions:
 
 Note:
 - Current date will be the backup file's name
+- A lot of the functions/implementation is mind boggling
+  but I wrote this for my work at HWL. Personalized use
+  version may be released at a later date.
 
 Requirement:
 - Windows 7 +
