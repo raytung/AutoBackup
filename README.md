@@ -10,9 +10,9 @@ Functions:
 
 Note:
 - Current date will be the backup file's name
-- A lot of the functions/implementation is mind boggling and confusing.
-  This is because I wrote this for my work at HWL, and specific implementations were required. Personalized use
-  version may be released at a later date.
+- This script was intended for my work at HWL, which will explain
+  the mind boggling implementations.
+
 
 Requirement:
 - Windows 7 +
