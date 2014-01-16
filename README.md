@@ -10,7 +10,7 @@ Functions:
 
 Note:
 - Current date will be the backup file's name
-- This script is intended for my work at HWL, which will explain
+- This script is intended for my internship at HWL, which will explain
   the mind boggling implementations.
 
 
