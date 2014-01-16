@@ -49,58 +49,7 @@ robocopy    = "%windir%\System32\Robocopy.exe"
 seven_z_exe = "%programfiles%\7-Zip\7z.exe"
 
 
-' ------------- DO NOT MODIFY BELOW THIS LINE -----------------
-
-
-
-
-
-
-
-
-
-
-
-' ------------ READ THE LINE ABOVE THIS -----------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+' ------------- DO NOT MODIFY BELOW THIS LINE -----------------------------------------------------------
 
 
 ' ------------- GLOBAL VARIABLES ------------------------------
