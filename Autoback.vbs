@@ -24,14 +24,14 @@
 ' logg       = Desire log location
 
 ' ------------- PARAMETERS BELOW THIS LINE --------------------
- src        = "H:\"
- tgt        = "C:\Users\test"
- purge_dir  = "C:\Users\test"
- prefix     = "H_"
- drive      = "H:"
- svr        = "\\HILFILEA01\user$\gisd\RT23389\"
+ src        = "Z:\myprecious"
+ tgt        = "C:\frodo\backup"
+ purge_dir  = "C:\frodo\backup"
+ prefix     = "Ring_"
+ drive      = "Z:"
+ svr        = "\\Mordor\"
  purge_days = 7
- logg       = "C:\Users\test" & "\backup.log"
+ logg       = "C:\frodo\backup" & "\backup.log"
  
  
  
