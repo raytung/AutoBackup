@@ -37,6 +37,8 @@
  
  
 
+ 
+
  ' Parameters names:
  ' robocopy    = path of Robocopy.exe
  ' seven_z_exe = path of 7z.exe
@@ -99,29 +101,30 @@ END FUNCTION
 ' only purge files with prefix
 FUNCTION Purge()
 	FOR EACH f IN p_files
-		' regex.test() returns -1 if pattern matches. Else returns 0
+' regex.test() returns -1 if pattern matches. Else returns 0
 		IF (regex.Test(f.Name) = -1) THEN
 			tmp = RmExt(f.Name)
 			tmp = RmPrfx(tmp)
 			IF today - cdate(tmp) >= purge_days THEN
-			
-				' Treat this as Exception handling. Err.Number = 0 if nothing is wrong. 
-				ON ERROR RESUME NEXT
-				tmp_name = f.Name
-				purge_.DeleteFile(f)
-				IF (Err.Number = 0) THEN
-					CALL WriteLog(2, tmp_name)
-					Err.Clear
-				ELSE
-					CALL WriteLog(3, tmp_name)
-					Err.Clear
-				END IF
-				ON ERROR GOTO 0
-				
+				CALL DeleteFile(f)
 			END IF
 		END IF
 	NEXT
 END FUNCTION	
+
+FUNCTION DeleteFile(file)
+	ON ERROR RESUME NEXT
+		tmp_name = file.Name
+		purge_.DeleteFile(file)
+		IF (Err.Number = 0) THEN
+			CALL WriteLog(2, tmp_name)
+			Err.Clear
+		ELSE
+			CALL WriteLog(3, tmp_name)
+			Err.Clear
+		END IF
+	ON ERROR GOTO 0
+END FUNCTION
  
 ' Remove File Extention from file name. 
 ' E.g Viewpoint_2013-01-01.zip --> Viewpoint_2013-01-01
