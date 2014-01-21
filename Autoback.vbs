@@ -1,4 +1,4 @@
-'Autoback.vbs [Version 2.0]
+'Autoback.vbs [Version 2.1]
 'Written by Ray Tung RayT@hwl.com.hk . All rights reserved.
 'Last Updated 13/01/2014
 'This version is designed to use with Task Scheduler
@@ -24,14 +24,14 @@
 ' logg       = Desire log location
 
 ' ------------- PARAMETERS BELOW THIS LINE --------------------
- src        =                             ' e.g "G:\raytung\very important files"
- tgt        =                             ' e.g "C:\Users\raytung\Desktop\backup"
- purge_dir  =                             ' e.g "C:\Users\raytung\Desktop\backup"
- prefix     =                             ' e.g "Cat_"
- drive      =                             ' e.g "G:"    PLEASE have this set as the drive at src. Or it will fail
- svr        =                             ' e.g "\\home\share"
- purge_days =                             ' e.g 7
- logg       =                             ' e.g "C:\Users\raytung\Desktop\backup" & "\backup.log"
+ src        = "H:\"
+ tgt        = "C:\Users\test"
+ purge_dir  = "C:\Users\test"
+ prefix     = "H_"
+ drive      = "H:"
+ svr        = "\\HILFILEA01\user$\gisd\RT23389\"
+ purge_days = 7
+ logg       = "C:\Users\test" & "\backup.log"
  
  
  
@@ -49,7 +49,8 @@ robocopy    = "%windir%\System32\Robocopy.exe"
 seven_z_exe = "%programfiles%\7-Zip\7z.exe"
 
 
-' ------------- DO NOT MODIFY BELOW THIS LINE -----------------------------------------------------------
+' ------------- DO NOT MODIFY BELOW THIS LINE ---------------------------------------------------------
+
 
 
 ' ------------- GLOBAL VARIABLES ------------------------------
@@ -68,7 +69,7 @@ SET p_fold = purge_.GetFolder(purge_dir)
 SET files  = folder.Files
 SET p_files= p_fold.Files
 SET regex  = CreateObject("VBScript.RegExp")
-    today_r= Year(Date) & "-" & formatDate(Month(Date)) & "-" & Day(Date)
+	today_r= Year(Date) & "-" & formatDate(Month(Date)) & "-" & Day(Date)
     today  = cdate(today_r)
 SET logFile= obj.OpenTextFile(logg, 8, True)
 SET Net_   = CreateObject("WScript.Network")
@@ -149,23 +150,25 @@ FUNCTION CheckNetDriveInfo()
 		IF (compSvr = 0 AND compDrv = 0) THEN
 			ConnectNetDrive()
 			j = 0
+			EXIT FOR
 		END IF
 	NEXT
 	
+	' If the given drive & server combination is no found
 	IF ( j = 1 ) THEN
-		Wscript.Echo "ERROR"
-		CALL WriteLog(6, NULL)
-		Finish()
-		WScript.Quit
+		MapDrive()
+		ConnectNetDrive()
 	END IF
 END FUNCTION
  
 FUNCTION ConnectNetDrive()
 	CALL shell.Run("net use /p:yes", 0, true)
-	CALL WriteLog(4, drive&svr)
-	
+	CALL WriteLog(4, svr)
+END FUNCTION
+
+FUNCTION MapDrive()
 	ON ERROR RESUME NEXT
-		CALL shell.Run("net use "&drive&" "&svr, 0, true)
+		CALL Net_.MapNetworkDrive(drive, svr)
 		IF (Err.Numbr = 0) THEN
 			CALL WriteLog(5, drive&svr)
 		ELSE
@@ -174,7 +177,6 @@ FUNCTION ConnectNetDrive()
 			WScript.Quit
 		END IF
 	ON ERROR GOTO 0
-	
 END FUNCTION
 
 FUNCTION Backup()
